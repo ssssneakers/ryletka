@@ -4,7 +4,7 @@ from telebot import types
 markup_menu = types.ReplyKeyboardMarkup(resize_keyboard=True)
 markup_menu.add(types.KeyboardButton('Инфа'))
 markup_menu.add(types.KeyboardButton('Начнем возню'))
-markup_menu.add(types.KeyboardButton('Балик'))
+markup_menu.add(types.KeyboardButton('Напивкокенту!'))
 markup_menu.add(types.KeyboardButton('Самые сладкие'))
 markup_menu.add(types.KeyboardButton('Поддержка'))
 
@@ -29,3 +29,6 @@ markup_game1.add(types.KeyboardButton('Бумага'))
 markup_game2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
 markup_game2.add(types.KeyboardButton('Крутить барабан'))
 markup_game2.add(types.KeyboardButton('Вернуться в меню'))
+# Кнопка для инфы
+markup_info = types.ReplyKeyboardMarkup(resize_keyboard=True)
+markup_info.add(types.KeyboardButton('Вернуться в меню'))

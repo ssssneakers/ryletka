@@ -1,3 +1,3 @@
-bodya33 = 'C:\\Users\\azpp3\\PycharmProjects\\ryletka23\\photo\\bodya33.jpg'
-grystni_grigos = 'C:\\Users\\azpp3\\PycharmProjects\\ryletka23\\photo\\sad.jpg'
-happy_grigos = 'C:\\Users\\azpp3\\PycharmProjects\\ryletka23\\photo\\happy_grigos.jpg'
+bodya33 = '/home/student/ryletka/photo/bodya33.jpg'
+grystni_grigos = '/home/student/ryletka/photo/sad.jpg'
+happy_grigos = '/home/student/ryletka/photo/happy_grigos.jpg'
