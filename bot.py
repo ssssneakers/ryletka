@@ -62,17 +62,17 @@ def start(message):
     in_game[user_id] = False
     if user_id not in user_balances:  # Проверяем, есть ли пользователь в базе
         user_balances[user_id] = 1000
-        with open(bodya33, 'rb') as file:
-            bot.send_photo(message.chat.id, file)
-            bot.send_message(message.chat.id, 'Привет! Я ботик созданный big cockом.Твой баланс равен 1000 шмеклей. Хочешь начать?\n'
-                                              'Для начала этого нажми на кнопку "Инфа" и ознакомься с правилами.', reply_markup=markup_menu)
+        # with open(bodya33, 'rb') as file:
+        # bot.send_photo(message.chat.id, file)
+        bot.send_message(message.chat.id, 'Привет! Я ботик созданный big cockом.Твой баланс равен 1000 шмеклей. Хочешь начать?\n'
+                                          'Для начала этого нажми на кнопку "Инфа" и ознакомься с правилами.', reply_markup=markup_menu)
 
     else:
-        with open(bodya33, 'rb') as file:
-            bot.send_photo(message.chat.id, file)
-            bot.send_message(message.chat.id, 'Здорова! Это мини казино от Лаптева.\n'
-                                              'Перед тем чтобы начать играть лучше нажми на кнопку "Инфа" и ознакомься с правилами.\n'
-                                              'Удачи!', reply_markup=markup_menu)
+        # with open(bodya33, 'rb') as file:
+        # bot.send_photo(message.chat.id, file)
+        bot.send_message(message.chat.id, 'Здорова! Это мини казино от Лаптева.\n'
+                                          'Перед тем чтобы начать играть лучше нажми на кнопку "Инфа" и ознакомься с правилами.\n'
+                                          'Удачи!', reply_markup=markup_menu)
     save_data()
 
 
@@ -160,16 +160,16 @@ def russian_roulette(message):
         return
 
     if random.randint(1, 6) == 1:
-        with open(grystni_grigos, 'rb') as file:
-            bot.send_photo(message.chat.id, file)
-            user_balances[user_id] *= 2  # Увеличиваем баланс вдвое при выигрыше
-            bot.send_message(message.chat.id, "Поздравляю! Вы победили и удвоили свой кэш.")
+        # with open(grystni_grigos, 'rb') as file:
+        # bot.send_photo(message.chat.id, file)
+        user_balances[user_id] *= 2  # Увеличиваем баланс вдвое при выигрыше
+        bot.send_message(message.chat.id, "Поздравляю! Вы победили и удвоили свой кэш.")
 
     else:
-        with open(happy_grigos, 'rb') as file:
-            bot.send_photo(message.chat.id, file)
-            user_balances[user_id] = 0  # Обнуляем баланс при проигрыше
-            bot.send_message(message.chat.id, "Лудоман иди работай!")
+        # with open(happy_grigos, 'rb') as file:
+        # bot.send_photo(message.chat.id, file)
+        user_balances[user_id] = 0  # Обнуляем баланс при проигрыше
+        bot.send_message(message.chat.id, "Лудоман иди работай!")
 
     bot.send_message(message.chat.id, f"Ваш текущий баланс: {user_balances[user_id]} евро", reply_markup=markup_game2)
 
