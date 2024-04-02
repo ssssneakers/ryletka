@@ -70,9 +70,9 @@ def start(message):
     else:
         with open(bodya33, 'rb') as file:
             bot.send_photo(message.chat.id, file)
-            bot.send_message(message.chat.id, 'Здорова! Это мини казино от Лаптева.\n'
-                                              'Перед тем чтобы начать играть лучше нажми на кнопку "Инфа" и ознакомься с правилами.\n'
-                                              'Удачи!', reply_markup=markup_menu)
+        bot.send_message(message.chat.id, 'Здорова! Это мини казино от Лаптева.\n'
+                                          'Перед тем чтобы начать играть лучше нажми на кнопку "Инфа" и ознакомься с правилами.\n'
+                                          'Удачи!', reply_markup=markup_menu)
     save_data()
 
 
@@ -108,66 +108,91 @@ def leaderboard_handler(message):
 @bot.message_handler(func=lambda message: message.text == 'Инфа')
 def info(message):
     bot.send_message(message.chat.id, 'Здорова! Если вкратце об function бота \n'
+                                      'Важно!Если что то не работает, то начните с команды старт и попробуйте ещё раз\n'
+                                      'Если что пишите мне на телегу @Programist337 \n'
                                       'При запуске бота вас встретит меню со следующим набором кнопок\n'
                                       '"Начнем возню"- открывает меню с списком всех игр\n'
-                                      '"Напивкокенту!"- позволяет большому папочке радовать своего бомже друга\n'
+                                      '"Напивкокенту!"- позволяет большому папочке радовать своего бомже друга(самая жесткая функция в данном боте)\n'
                                       '"Самые сладкие"- это что то вроде таблицы лидеров.Она показывает твой баланс и позицию в топе на которой ты находишься\n'
                                       '"Поддержка"- ну тут указаны мои цифры для связи\n'
+                                      '"Узнать ID"- показывает твой ID\n'
                                       'Быть добру!', reply_markup=markup_info)
 
 
+@bot.message_handler(func=lambda message: message.text == 'Узнать ID')
+def user_ID(message):
+    user_id = message.from_user.id
+    bot.send_message(message.chat.id, f"Твой ID: {user_id}", reply_markup=markup_info)
+
+
 # Функция для перевода валюты
-#@bot.message_handler(func=lambda message: message.text == 'Напивкокенту!')
+@bot.message_handler(func=lambda message: message.text == 'Напивкокенту!')
 def send_money(message):
-    bot.send_message(message.chat.id, "для начала выбери кентa, возьми его ID(в формате @username) и подумай над суммой перевода.\n"
-                                      "Когда решишься отправляй сообщение в формате: /перевод @получатель сумма", reply_markup=markup_choise2)
+    bot.send_message(message.chat.id, "для начала выбери кентa, попроси его ID и подумай над суммой перевода.\n"
+                                      "Когда решишься отправляй сообщение в формате: /перевод получатель сумма [анон]/[] сообщение\n"
+                                      "Например: /перевод 5456456456 999 [анон] От Шмелека!", reply_markup=markup_info)
 
     bot.register_next_step_handler(message, transfer_money)
 
 
 def transfer_money(message):
     try:
-        parts = message.text.split()
-        if len(parts) < 3:
-            bot.send_message(message.chat.id, "Некорректный формат. Используйте: /перевод @получатель сумма")
+        parts = message.text.split(maxsplit=4)
+        if len(parts) < 4:
+            bot.send_message(message.chat.id, "Некорректный формат. Используйте: /перевод @получатель сумма [анон] сообщение")
             return
 
-        receiver = parts[1]
+        receiver_username = parts[1]
         amount = int(parts[2])
         sender_id = message.from_user.id
+        is_anonymous = False
+        message_text = ' '.join(parts[4:])
+
+        if parts[3].lower() == "анон":
+            is_anonymous = True
 
         if amount <= 0:
             bot.send_message(message.chat.id, "Сумма должна быть положительным числом.")
             return
 
-        if sender_id not in user_balances:
+        sender_balance = user_balances.get(sender_id)
+        if sender_balance is None:
             bot.send_message(message.chat.id, "У вас нет средств для перевода.")
             return
 
-        if user_balances[sender_id] < amount:
+        if sender_balance < amount:
             bot.send_message(message.chat.id, "У вас недостаточно средств для перевода этой суммы.")
             return
 
-        if receiver in user_balances:
-            user_balances[sender_id] -= amount
-            user_balances[receiver] += amount
-            if user_balances[sender_id] < 0:
-                user_balances[sender_id] += amount  # Откатываем изменение баланса отправителя
-                bot.send_message(message.chat.id, "У вас недостаточно средств для перевода этой суммы.")
-            else:
-                save_data()
-                bot.send_message(message.chat.id, f"Вы успешно перевели {amount} пользователю {receiver}.")
+        if receiver_username not in user_balances:
+            bot.send_message(message.chat.id, "Пользователь не найден.")
+            return
+
+        sender_balance -= amount
+        receiver_balance = user_balances[receiver_username]
+        receiver_balance += amount
+
+        user_balances[sender_id] = sender_balance
+        user_balances[receiver_username] = receiver_balance
+
+        bot.send_message(message.chat.id, f"Перевод успешно выполнен! Вы отправили {amount} руб. пользователю {receiver_username}.")
+
+        receiver_id = bot.get_chat(receiver_username).id
+        if is_anonymous:
+            bot.send_message(receiver_id, f"Вам был отправлен анонимный перевод в размере {amount} руб.")
         else:
-            bot.send_message(message.chat.id, "Получатель не найден в базе данных.")
+            bot.send_message(receiver_id, f"Вам был отправлен перевод в размере {amount} руб. от пользователя {message.from_user.username}.\nСообщение: {message_text}")
 
     except (ValueError, IndexError):
-        bot.send_message(message.chat.id, "Некорректный формат. Используйте: /перевод @получатель сумма")
+        bot.send_message(message.chat.id, "Некорректный формат. Используйте: /перевод @получатель сумма [анонимно] сообщение")
 
 
 @bot.message_handler(func=lambda message: message.text == 'Начнем возню')
 def start_game(message):
     user_id = message.from_user.id
     balance = user_balances[user_id]
+    if user_id not in user_balances:
+        user_balances[user_id] = 1000
     bot.send_message(message.chat.id, f"Напомню, что твой баланс равен: {balance}рупий.\n"
                                       f"Теперь выбери игру.", reply_markup=markup_choise1)
 

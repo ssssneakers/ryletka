@@ -7,6 +7,7 @@ markup_menu.add(types.KeyboardButton('Начнем возню'))
 markup_menu.add(types.KeyboardButton('Напивкокенту!'))
 markup_menu.add(types.KeyboardButton('Самые сладкие'))
 markup_menu.add(types.KeyboardButton('Поддержка'))
+markup_menu.add(types.KeyboardButton('Узнать ID'))
 
 # Кнопки для выбора игры
 markup_choise1 = types.ReplyKeyboardMarkup(resize_keyboard=True)
