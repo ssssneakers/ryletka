@@ -60,7 +60,7 @@ def back_to_menu(message):
 def start(message):
     user_id = message.from_user.id
     in_game[user_id] = False
-    if user_id not in user_balances:  # Проверяем, есть ли пользователь в базе
+    if user_id not in user_balances:  # Проверяем, есть ли пользователь в баgit add .зе
         user_balances[user_id] = 1000
         with open(bodya33, 'rb') as file:
             bot.send_photo(message.chat.id, file)
