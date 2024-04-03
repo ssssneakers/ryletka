@@ -68,8 +68,8 @@ def start(message):
                                           'Для начала этого нажми на кнопку "Инфа" и ознакомься с правилами.', reply_markup=markup_menu)
 
     else:
-        with open(bodya33, 'rb') as file:
-            bot.send_photo(message.chat.id, file)
+        # with open(bodya33, 'rb') as file:
+        # bot.send_photo(message.chat.id, file)
         bot.send_message(message.chat.id, 'Здорова! Это мини казино от Лаптева.\n'
                                           'Перед тем чтобы начать играть лучше нажми на кнопку "Инфа" и ознакомься с правилами.\n'
                                           'Удачи!', reply_markup=markup_menu)
@@ -129,7 +129,7 @@ def user_ID(message):
 @bot.message_handler(func=lambda message: message.text == 'Напивкокенту!')
 def send_money(message):
     bot.send_message(message.chat.id, "для начала выбери кентa, попроси его ID и подумай над суммой перевода.\n"
-                                      "Когда решишься отправляй сообщение в формате: /перевод получатель сумма [анон]/[] сообщение\n"
+                                      "Когда решишься отправляй сообщение в формате(если выбираешь анон то сообщение старайся писать без пробелов): /перевод получатель сумма [анон]/[] сообщение\n"
                                       "Например: /перевод 5456456456 999 [анон] От Шмелека!", reply_markup=markup_info)
 
     bot.register_next_step_handler(message, transfer_money)
@@ -265,6 +265,71 @@ def russian_roulette(message):
         bot.send_message(message.chat.id, "Лудоман иди работай!")
 
     bot.send_message(message.chat.id, f"Ваш текущий баланс: {user_balances[user_id]} евро", reply_markup=markup_game2)
+
+
+@bot.message_handler(func=lambda message: message.text == 'Слоты')
+def slots_game(message):
+    user_id = message.from_user.id
+    if in_game[user_id]:  # Проверяем, идет ли уже игра
+        bot.send_message(message.chat.id, "Игра уже начата. Завершите текущую игру или выберите 'Еще раз'.")
+        return
+
+    in_game[user_id] = True
+    bot.send_message(message.chat.id, 'Ну что, боров, ДЕЛАЙ СТАВКУ ЦИФРАМИ!!! (если хочешь сыграть еще раз просто напиши еще раз ставку)\n'
+                                      'Чтобы выйти нажми вернуться в меню 2 раза', reply_markup=markup_info)
+
+    bot.register_next_step_handler(message, play_slots)
+
+
+def play_slots(message):
+    user_id = message.from_user.id
+    balance = user_balances[user_id]
+    bet = message.text
+
+    if not bet.isdigit():
+        bot.send_message(message.chat.id, "Некорректная ставка. Введите число.")
+        return
+
+    bet = int(message.text)
+
+    if bet > balance:
+        bot.send_message(message.chat.id, "Куда ты, бомжик?")
+        return
+
+    if bet <= 0:
+        bot.send_message(message.chat.id, "Некорректная ставка.")
+        return
+
+    symbols = ['💎', '🍀', '🍒', '🔔', '🍊', '🍇', '🌟', '777', '🍒🍒🍒']  # Символы для слотов
+    reels = [random.choice(symbols) for _ in range(3)]  # Генерация символов на барабанах
+
+    payout_table = {
+        '777': 17 * bet,
+        '🍒🍒🍒': 10 * bet,
+        '💎💎💎': 9 * bet,
+        '🍀🍀🍀': 6 * bet,
+        '🔔🔔🔔': 5 * bet,
+        '🍊🍊🍊': 2 * bet,
+        '🍇🍇🍇': 2 * bet,
+        '🌟🌟🌟': 2 * bet
+    }  # Таблица выплат
+
+    winning_symbol = reels[0]
+    payout = payout_table.get(winning_symbol, 0)
+    balance -= bet
+    balance += payout
+    reels_str = ' '.join(reels)
+
+    if payout > 0:
+        bot.send_message(message.chat.id, f"{reels_str}")
+        bot.send_message(message.chat.id, f"УРАААА!!!!+{payout} руб.")
+        bot.register_next_step_handler(message, play_slots)
+    else:
+        bot.send_message(message.chat.id, f"{reels_str}")
+        bot.send_message(message.chat.id, "Вы проиграли.")
+        bot.register_next_step_handler(message, play_slots)
+
+    return reels, payout, balance
 
 
 @bot.message_handler(func=lambda message: message.text == 'Еще раз')

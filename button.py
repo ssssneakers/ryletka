@@ -14,6 +14,7 @@ markup_choise1 = types.ReplyKeyboardMarkup(resize_keyboard=True)
 markup_choise1.add(types.KeyboardButton('Вернуться в меню'))
 markup_choise1.add(types.KeyboardButton('Камень,Ножницы,Бумага'))
 markup_choise1.add(types.KeyboardButton('Русская рулетка'))
+markup_choise1.add(types.KeyboardButton('Слоты'))
 
 # Кнопки после завершения игры
 markup_choise2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -30,6 +31,10 @@ markup_game1.add(types.KeyboardButton('Бумага'))
 markup_game2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
 markup_game2.add(types.KeyboardButton('Крутить барабан'))
 markup_game2.add(types.KeyboardButton('Вернуться в меню'))
+
+# Кнопка для слотов
+markup_slots = types.ReplyKeyboardMarkup(resize_keyboard=True)
+markup_slots.add(types.KeyboardButton('Вернуться в меню'))
 # Кнопка для инфы
 markup_info = types.ReplyKeyboardMarkup(resize_keyboard=True)
 markup_info.add(types.KeyboardButton('Вернуться в меню'))
