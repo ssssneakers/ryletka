@@ -190,9 +190,9 @@ def transfer_money(message):
 @bot.message_handler(func=lambda message: message.text == 'Начнем возню')
 def start_game(message):
     user_id = message.from_user.id
-    balance = user_balances[user_id]
     if user_id not in user_balances:
         user_balances[user_id] = 1000
+    balance = user_balances[user_id]
     bot.send_message(message.chat.id, f"Напомню, что твой баланс равен: {balance}рупий.\n"
                                       f"Теперь выбери игру.", reply_markup=markup_choise1)
 

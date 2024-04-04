@@ -42,3 +42,24 @@ Traceback (most recent call last):
     raise ApiTelegramException(method_name, result, result_json)
 telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 502. Description: Bad Gateway
 
+2024-04-03 23:02:40,187 - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2024-04-03 23:02:40,188 - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\__init__.py", line 1140, in __threaded_polling
+    polling_thread.raise_exceptions()
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\util.py", line 110, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\util.py", line 92, in run
+    task(*args, **kwargs)
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\__init__.py", line 661, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1),
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\__init__.py", line 633, in get_updates
+    json_updates = apihelper.get_updates(
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\apihelper.py", line 321, in get_updates
+    return _make_request(token, method_url, params=payload)
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\apihelper.py", line 164, in _make_request
+    json_result = _check_result(method_name, result)
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\apihelper.py", line 191, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+
