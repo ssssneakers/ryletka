@@ -8,6 +8,7 @@ markup_menu.add(types.KeyboardButton('Напивкокенту!'))
 markup_menu.add(types.KeyboardButton('Самые сладкие'))
 markup_menu.add(types.KeyboardButton('Поддержка'))
 markup_menu.add(types.KeyboardButton('Узнать ID'))
+markup_menu.add(types.KeyboardButton('Crypto'))
 
 # Кнопки для выбора игры
 markup_choise1 = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -32,9 +33,15 @@ markup_game2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
 markup_game2.add(types.KeyboardButton('Крутить барабан'))
 markup_game2.add(types.KeyboardButton('Вернуться в меню'))
 
-# Кнопка для слотов
-markup_slots = types.ReplyKeyboardMarkup(resize_keyboard=True)
-markup_slots.add(types.KeyboardButton('Вернуться в меню'))
+
 # Кнопка для инфы
 markup_info = types.ReplyKeyboardMarkup(resize_keyboard=True)
 markup_info.add(types.KeyboardButton('Вернуться в меню'))
+
+# Кнопка для криптовалют
+markup_crypto = types.ReplyKeyboardMarkup(resize_keyboard=True)
+markup_crypto.add(types.KeyboardButton('Топ крипт'))
+markup_crypto.add(types.KeyboardButton('Стать трейдером'))
+markup_crypto.add(types.KeyboardButton('Create Crypto'))
+markup_crypto.add(types.KeyboardButton('Моя крипта'))
+markup_crypto.add(types.KeyboardButton('Вернуться в меню'))

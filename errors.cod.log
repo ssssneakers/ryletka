@@ -63,3 +63,95 @@ Traceback (most recent call last):
     raise ApiTelegramException(method_name, result, result_json)
 telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 409. Description: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
 
+2024-04-06 17:13:33,827 - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: chat not found
+2024-04-06 17:13:33,828 - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\__init__.py", line 1141, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\util.py", line 149, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\util.py", line 92, in run
+    task(*args, **kwargs)
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\__init__.py", line 7868, in _run_middlewares_and_handler
+    result = handler['function'](message)
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\bot.py", line 156, in leaderboard_handler
+    user_name = bot.get_chat(user_id).first_name
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\__init__.py", line 1436, in get_chat
+    apihelper.get_chat(self.token, chat_id)
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\apihelper.py", line 347, in get_chat
+    return _make_request(token, method_url, params=payload)
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\apihelper.py", line 164, in _make_request
+    json_result = _check_result(method_name, result)
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\apihelper.py", line 191, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: chat not found
+
+2024-04-06 17:33:21,546 - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: chat not found
+2024-04-06 17:33:21,547 - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\__init__.py", line 1141, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\util.py", line 149, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\util.py", line 92, in run
+    task(*args, **kwargs)
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\__init__.py", line 7868, in _run_middlewares_and_handler
+    result = handler['function'](message)
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\bot.py", line 165, in leaderboard_handler
+    user_name = bot.get_chat(user_id).first_name
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\__init__.py", line 1436, in get_chat
+    apihelper.get_chat(self.token, chat_id)
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\apihelper.py", line 347, in get_chat
+    return _make_request(token, method_url, params=payload)
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\apihelper.py", line 164, in _make_request
+    json_result = _check_result(method_name, result)
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\apihelper.py", line 191, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: chat not found
+
+2024-04-06 17:33:34,522 - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: chat not found
+2024-04-06 17:33:34,522 - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\__init__.py", line 1141, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\util.py", line 149, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\util.py", line 92, in run
+    task(*args, **kwargs)
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\__init__.py", line 7868, in _run_middlewares_and_handler
+    result = handler['function'](message)
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\bot.py", line 165, in leaderboard_handler
+    user_name = bot.get_chat(user_id).first_name
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\__init__.py", line 1436, in get_chat
+    apihelper.get_chat(self.token, chat_id)
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\apihelper.py", line 347, in get_chat
+    return _make_request(token, method_url, params=payload)
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\apihelper.py", line 164, in _make_request
+    json_result = _check_result(method_name, result)
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\apihelper.py", line 191, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: chat not found
+
+2024-04-06 17:38:55,981 - ERROR - Threaded polling exception: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: chat not found
+2024-04-06 17:38:55,982 - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\__init__.py", line 1141, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\util.py", line 149, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\util.py", line 92, in run
+    task(*args, **kwargs)
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\__init__.py", line 7868, in _run_middlewares_and_handler
+    result = handler['function'](message)
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\bot.py", line 165, in leaderboard_handler
+    user_name = bot.get_chat(user_id).first_name
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\__init__.py", line 1436, in get_chat
+    apihelper.get_chat(self.token, chat_id)
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\apihelper.py", line 347, in get_chat
+    return _make_request(token, method_url, params=payload)
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\apihelper.py", line 164, in _make_request
+    json_result = _check_result(method_name, result)
+  File "C:\Users\azpp3\PycharmProjects\ryletka23\venv\lib\site-packages\telebot\apihelper.py", line 191, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: chat not found
+
